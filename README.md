@@ -1,10 +1,22 @@
 # Penitus-Downloader
 
-Penitus Downloader is a script that allows you to download files from the internet. It starts by asking the user to input URLs to download, and then it creates a new thread for each URL. If the URL is a YouTube video, the code uses the pytube library to download the video. Otherwise, it uses the requests library to download the file and save it to the specified folder.
+This code provides functions and classes for downloading files from the internet.
 
-The script also includes some basic error handling to check if the URL is valid and to handle situations where the URL is not a YouTube video or a file that can be downloaded using the requests library.
+### download_youtube_video(url, folder, filetype)
+This function downloads a video from YouTube given a URL and saves it to a specified folder with a specified file type. It uses the PyTube library to accomplish this task.
 
-The script uses the threading library to create and run threads, which allows you to perform multiple downloads concurrently. This can be useful for downloading multiple files at the same time and speeding up the overall process.
+### Parameters:
+url: A string representing the URL of the YouTube video to be downloaded.
+folder: A string representing the path of the folder where the downloaded video will be saved.
+filetype: A string representing the file type of the video to be downloaded (e.g. 'mp4', 'webm').
+### Downloader(threading.Thread)
+This class is a subclass of threading.Thread and it has an __init__ method that takes three arguments: url, filename, and folder.
+
+### Parameters:
+url: A string representing the URL of the file to be downloaded.
+filename: A string representing the name of the file that will be used to save the downloaded file.
+folder: A string representing the path of the folder where the downloaded file will be saved.
+The run method of this class attempts to download a file from the URL specified in the url argument and save it to the specified folder with the specified filename. If the URL is a Spotify track URL, the function extracts the track ID from the URL, requests an access token from the Spotify API using the ID and SECRET variables, and uses the access token to make a request for the track metadata and track audio data. It then saves the audio data to a file with the filename specified in the __init__ method.
 
 ## Libraries
 
@@ -15,3 +27,9 @@ The script uses the threading library to create and run threads, which allows yo
 * os
 
 Make sure to have downloaded these libraries before attempting to use the file downloader.
+
+
+## Spotify Support
+
+To use spotify with this File Downloader, you need to go to create an app in the spotify [Developer DashBoard](https://developer.spotify.com/dashboard/applications), take the ID and the Secret and replace
+the `ID` and `SECRET` with your own credentials.

@@ -6,12 +6,12 @@ import pytube
 import base64
 import json
 
-with open('hidden.json', 'r') as f:
-    data = json.load(f)
+#with open('hidden.json', 'r') as f:
+ #   data = json.load(f)
 
-# Access a value in the JSON object
-ID = data['Client_Token']
-SECRET = data['Client_Secret']
+
+ID = "REPLACE IT HERE"
+SECRET = "REPLACE THIS HERE"
 
 
 print(ID,SECRET)
