@@ -53,7 +53,7 @@ class Downloader(threading.Thread):
 
             try:
                 response = requests.get(self.url, stream=True) #Here we get request the data using requests.get, and inputing the url
-                print(Fore.LIGHTMAGENTA_EX + f"{self.filename}"  + Fore.CYAN +  "is downloading...\n")
+                print(Fore.LIGHTMAGENTA_EX + f"{self.filename}"  + Fore.CYAN +  " is downloading...\n")
                 print("-----------------------------------------------------------------------------")
             except:
                 print(Fore.RED + f"The url inputed for {self.filename} is not a vaild type of url to download\n This file will not be downloaded and skipped.\n")
@@ -67,7 +67,7 @@ class Downloader(threading.Thread):
             end_time = time.time()  # record the end time
             elapsed_time = end_time - start_time  # calculate the elapsed time
             
-            print(Fore.LIGHTMAGENTA_EX + f"{self.filename} has been downloaded in"  + Fore.LIGHTRED_EX + f"{elapsed_time:.2f} seconds.\n")
+            print(Fore.LIGHTMAGENTA_EX + f"{self.filename} has been downloaded in "  + Fore.LIGHTRED_EX + f"{elapsed_time:.2f} seconds.\n")
 
 
 from colorama import Fore, Style
