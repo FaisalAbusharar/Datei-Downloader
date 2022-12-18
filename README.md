@@ -2,17 +2,17 @@
 
 This code provides functions and classes for downloading files from the internet.
 
-### download_youtube_video(url, folder, filetype)
+## download_youtube_video(url, folder, filetype)
 This function downloads a video from YouTube given a URL and saves it to a specified folder with a specified file type. It uses the PyTube library to accomplish this task.
 
-### Parameters:
+## Parameters:
 url: A string representing the URL of the YouTube video to be downloaded.
 folder: A string representing the path of the folder where the downloaded video will be saved.
 filetype: A string representing the file type of the video to be downloaded (e.g. 'mp4', 'webm').
 ### Downloader(threading.Thread)
 This class is a subclass of threading.Thread and it has an __init__ method that takes three arguments: url, filename, and folder.
 
-### Parameters:
+## Parameters:
 url: A string representing the URL of the file to be downloaded.
 filename: A string representing the name of the file that will be used to save the downloaded file.
 folder: A string representing the path of the folder where the downloaded file will be saved.
