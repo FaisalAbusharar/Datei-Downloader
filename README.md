@@ -1,41 +1,41 @@
 # Penitus-Downloader
 
 
-This code provides functions and classes for downloading files from the internet.
 
-## Installation
-To use this code, you will need to install the following libraries:
+This is a tool for downloading files, YouTube videos and (optionally) Spotify tracks.
 
-`pytube`: a library for downloading YouTube videos
-`requests`: a library for making HTTP requests
+## Prerequisites
+* Python 3
+* The following Python libraries: threading, requests, pytube, colorama
 
-You can install these libraries using pip:
+## Setup
+- Clone this repository and navigate to the directory:
+```
+git clone https://github.com/<your-username>/youtube-and-spotify-downloader.git
+cd youtube-and-spotify-downloader
+```
+- Install the required libraries:
 
+```pip install -r requirements.txt```
 
-`pip install pytube requests`
-## Functions and Classes
-## `download_youtube_video(url, folder, filetype)`
-This function downloads a video from YouTube given a URL and saves it to a specified folder with a specified file type. It uses the PyTube library to accomplish this task.
+- (Optional) Enable Spotify support:
+When you first run the script, you will be prompted to enable Spotify support. If you choose to enable it, you will need to enter your Spotify client ID and client secret. These values can be obtained by creating a Spotify developer account and creating an app at the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/).
 
-Parameters:
-* `url`: A string representing the URL of the YouTube video to be downloaded.
-* `folder`: A string representing the path of the folder where the downloaded video will be saved.
-* `filetype`: A string representing the file type of the video to be downloaded (e.g. 'mp4', 'webm').
-## `Downloader(threading.Thread)`
-This class is a subclass of `threading.Thread` and it has an `__init__` method that takes three arguments: `url`, `filename`, and `folder`.
+## Usage
+To download a YouTube video, run the script and enter the URL of the video when prompted. You can also specify a destination folder and filetype (e.g. `mp4` or `mp3`).
 
-Parameters:
-* `url`: A string representing the URL of the file to be downloaded.
-* `filename`: A string representing the name of the file that will be used to save the downloaded file.
-* `folder`: A string representing the path of the folder where the downloaded file will be saved.
+To download a Spotify track, you must first enable Spotify support as described above. Then, run the script and enter the URL of the track when prompted. Please note that due to limitations in the Spotify API, most tracks cannot be downloaded in full.
 
-The `run` method of this class attempts to download a file from the URL specified in the `url` argument and save it to the specified `folder` with the specified `filename`. If the URL is a Spotify track URL, the function extracts the track ID from the URL, requests an access token from the Spotify API using the `ID` and `SECRET` variables, and uses the access token to make a request for the track metadata and track audio data. It then saves the audio data to a file with the `filename` specified in the `__init__` method.
+Here is an example of downloading a YouTube video:
 
+```
+python downloader.py
+Enter the URL of what you want to download: https://www.youtube.com/watch?v=dQw4w9WgXcQ
+```
 
-Make sure to have downloaded these libraries before attempting to use the file downloader.
+## Limitations
+- Due to limitations in the Spotify API, most Spotify tracks cannot be downloaded in full.
+- The script is not capable of downloading private YouTube videos or tracks that are not available in your region.
 
-
-## Spotify Support
-
-To use spotify with this File Downloader, you need to go to create an app in the spotify [Developer DashBoard](https://developer.spotify.com/dashboard/applications), take the ID and the Secret and replace
-the `ID` and `SECRET` with your own credentials.
+## Disclaimer
+This script is intended for educational purposes only. Please respect the terms of service of YouTube and Spotify, and do not use it to download copyrighted content without permission.
