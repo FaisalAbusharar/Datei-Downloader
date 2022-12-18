@@ -21,7 +21,7 @@ Parameters:
 * `url`: A string representing the URL of the YouTube video to be downloaded.
 * `folder`: A string representing the path of the folder where the downloaded video will be saved.
 * `filetype`: A string representing the file type of the video to be downloaded (e.g. 'mp4', 'webm').
-## `Downloader(threading.Thread)
+## `Downloader(threading.Thread)`
 This class is a subclass of `threading.Thread` and it has an `__init__` method that takes three arguments: `url`, `filename`, and `folder`.
 
 Parameters:
