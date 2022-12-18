@@ -22,7 +22,7 @@ cd youtube-and-spotify-downloader
 When you first run the script, you will be prompted to enable Spotify support. If you choose to enable it, you will need to enter your Spotify client ID and client secret. These values can be obtained by creating a Spotify developer account and creating an app at the [Spotify Developer Dashboard](https://developer.spotify.com/dashboard/).
 
 ## Usage
-To download a YouTube video, run the script and enter the URL of the video when prompted. You can also specify a destination folder and filetype (e.g. `mp4` or `mp3`).
+To download a YouTube video, run the script and enter the URL of the video when prompted.
 
 To download a Spotify track, you must first enable Spotify support as described above. Then, run the script and enter the URL of the track when prompted. Please note that due to limitations in the Spotify API, most tracks cannot be downloaded in full.
 
