@@ -3,8 +3,18 @@ import requests
 import os
 import time
 import pytube
+import base64
+import json
+
+with open('hidden.json', 'r') as f:
+    data = json.load(f)
+
+# Access a value in the JSON object
+ID = data['Client_Token']
+SECRET = data['Client_Secret']
 
 
+print(ID,SECRET)
 
 def download_youtube_video(url, folder, filetype):
     from colorama import Fore, Style
@@ -40,10 +50,66 @@ class Downloader(threading.Thread):
 
             if not os.path.exists(self.folder):
                 os.makedirs(self.folder)
+
+
+            
             
             global start_time
 
+        
             start_time = time.time()
+
+            if "spotify" in self.url:
+            # Extract the track ID from the URL
+                    track_id = self.url.split("track/")[1]
+                    
+                    # Set up the authorization header for the Spotify API
+                    client_id = ID
+                    client_secret = SECRET
+                    auth_header = base64.b64encode(f"{client_id}:{client_secret}".encode())
+                    headers = {
+                        "Authorization": f"Basic {auth_header.decode()}"
+                    }
+                    
+                    # Request an access token from the Spotify API
+                    token_response = requests.post("https://accounts.spotify.com/api/token", data={
+                        "grant_type": "client_credentials"
+                    }, headers=headers)
+                    access_token = token_response.json()["access_token"]
+                    
+                    # Use the access token to make a request for the track metadata
+                    track_response = requests.get(f"https://api.spotify.com/v1/tracks/{track_id}", headers={
+                        "Authorization": f"Bearer {access_token}"
+                    })
+                    track_metadata = track_response.json()
+                    
+                    # Extract the track name from the metadata
+                    track_name = track_metadata["name"]
+                    
+                    # Extract the artist name from the metadata
+                    artist_name = track_metadata["artists"][0]["name"]
+                    
+                    # Construct the filename for the downloaded track
+                    filename = f"{artist_name} - {track_name}.mp3"
+                    file_path = os.path.join(self.folder, filename)
+                    
+                    # Use the access token to make a request for the track audio data
+                    audio_response = requests.get(track_metadata["preview_url"], headers={
+                        "Authorization": f"Bearer {access_token}"
+                    })
+                    
+                    # Save the audio data to the file
+                    with open(file_path, "wb") as f:
+                        f.write(audio_response.content)
+                    
+                    end_time = time.time()
+                    elapsed_time = end_time - start_time
+                    
+                    print(Fore.LIGHTMAGENTA_EX + f"{filename}" + Fore.LIGHTGREEN_EX +
+                    " has been downloaded to " + Fore.YELLOW +
+                     f"{self.folder}" + Fore.LIGHTGREEN_EX + f" in {elapsed_time:.2f}")
+                    return
+
         
             if "youtube" in self.url:
                 filetype = "mp4"
